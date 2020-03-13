@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ADBManager/src/ADBManager.iml" filepath="$PROJECT_DIR$/ADBManager/src/ADBManager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AppControl/src/AppControl.iml" filepath="$PROJECT_DIR$/AppControl/src/AppControl.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DTKManager/src/DTKManager.iml" filepath="$PROJECT_DIR$/DTKManager/src/DTKManager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Framework/src/Framework.iml" filepath="$PROJECT_DIR$/Framework/src/Framework.iml" />
+      <module fileurl="file://$PROJECT_DIR$/IdleFishApp/src/IdleFishApp.iml" filepath="$PROJECT_DIR$/IdleFishApp/src/IdleFishApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MExecutor/src/MExecutor.iml" filepath="$PROJECT_DIR$/MExecutor/src/MExecutor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MyDemo/src/main/MyDemo.iml" filepath="$PROJECT_DIR$/MyDemo/src/main/MyDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PhoneManager/src/PhoneManager.iml" filepath="$PROJECT_DIR$/PhoneManager/src/PhoneManager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TestProject.iml" filepath="$PROJECT_DIR$/TestProject.iml" />
+    </modules>
+  </component>
+</project>

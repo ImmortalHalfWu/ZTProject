@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="resources">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/ADBManager/src/resources/ADB_Win.zip!/" />
+      <root url="jar://$PROJECT_DIR$/ADBManager/src/resources/ADB_MAC.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

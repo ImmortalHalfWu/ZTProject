@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="libs">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/DTKManager/libs/logging-interceptor-3.4.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/DTKManager/libs/okhttp-3.4.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/DTKManager/libs/okio-1.9.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

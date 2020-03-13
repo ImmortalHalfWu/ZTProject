@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class MyProductSettingUrlDialog {
 
-    public static void showDialogTest(StackPane root, MyProductSettingView.ProductSettingViewListener listener) {
+    public static void showDialogTest(StackPane root, MyProductSettingUrlDialogListener listener) {
         if (root == null) {
             return;
         }
@@ -32,7 +32,7 @@ public class MyProductSettingUrlDialog {
     }
 
 
-    public static void showDialog(StackPane root, ProductSettingViewBean bean, MyProductSettingView.ProductSettingViewListener listener) {
+    public static void showDialog(StackPane root, ProductSettingViewBean bean, MyProductSettingUrlDialogListener listener) {
 
         try {
             if (root == null) {
@@ -44,8 +44,8 @@ public class MyProductSettingUrlDialog {
             StackPane dialogRoot = new MyProductSettingView(bean, new MyProductSettingView.ProductSettingViewListener() {
                 @Override
                 public void sendClick(ProductSettingViewBean dataBean) {
-                    listener.sendClick(dataBean);
-                    dialog.close();
+                    listener.sendClick(dialog, dataBean);
+//                    dialog.close();
                 }
 
                 @Override
@@ -69,4 +69,9 @@ public class MyProductSettingUrlDialog {
     }
 
 
+    public interface MyProductSettingUrlDialogListener {
+        void sendClick(JFXDialog dialog, ProductSettingViewBean dataBean);
+        void cancelClick(ProductSettingViewBean dataBean);
+        void errClick(ProductSettingViewBean dataBean);
+    }
 }

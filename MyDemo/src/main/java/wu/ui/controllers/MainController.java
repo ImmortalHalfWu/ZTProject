@@ -2,10 +2,12 @@ package wu.ui.controllers;
 
 import com.google.common.eventbus.Subscribe;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXRippler;
 import com.jfoenix.svg.SVGGlyph;
 import com.jfoenix.svg.SVGGlyphLoader;
 import com.sun.istack.internal.NotNull;
+import immortal.half.wu.FileUtils;
 import immortal.half.wu.LogUtil;
 import io.datafx.controller.ViewController;
 import io.datafx.controller.flow.context.FXMLViewFlowContext;
@@ -14,6 +16,8 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
@@ -29,11 +33,12 @@ import wu.ui.models.interfaces.MainModelListener;
 import wu.ui.utils.BeanUtil;
 import wu.ui.utils.MEventBus;
 import wu.ui.utils.ThreadUtil;
-import wu.ui.weights.DeviceListItemView;
-import wu.ui.weights.ProductListItemView;
+import wu.ui.weights.*;
 import wu.ui.weights.beans.DeviceItemViewBean;
+import wu.ui.weights.beans.ProductSettingViewBean;
 
 import javax.annotation.PostConstruct;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -44,6 +49,8 @@ public final class MainController implements MainModelListener {
 
     @FXMLViewFlowContext
     private ViewFlowContext context;
+    @FXML
+    private StackPane rootStackPane;
     @FXML
     private JFXRippler optionsRippler;
     @FXML
@@ -62,7 +69,6 @@ public final class MainController implements MainModelListener {
     private MainModel mainModel;
     private LinkedHashMap<String, DeviceListItemView> deviceIdItemViewMap = new LinkedHashMap<>();
     private LinkedHashMap<DeviceListItemView, ObservableList<ProductListItemView>> deviceProductMap = new LinkedHashMap<>();
-    private DeviceListItemView choiceDeviceItemView;
 
     @PostConstruct
     public void init() throws Exception {
@@ -71,6 +77,46 @@ public final class MainController implements MainModelListener {
         mainModel = new MainModel(this);
 
         setBtIco(sendProductBt, "icomoon.svg.paper-plane-o, send-o");
+        sendProductBt.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                MyInputUrlDialog.showDialog(rootStackPane, new MyInputUrlDialog.InputUrlDialogCallBack() {
+                    @Override
+                    public boolean filter(String text) {
+                        return FileUtils.isEmpty(text);
+                    }
+
+                    @Override
+                    public void sucClick(String text) {
+                        MyProductSettingUrlDialog.showDialogTest(rootStackPane, new MyProductSettingUrlDialog.MyProductSettingUrlDialogListener() {
+                            @Override
+                            public void sendClick(JFXDialog dialog, ProductSettingViewBean dataBean) {
+                                MyDeviceListDialog.showDeviceListDialog(
+                                        rootStackPane,
+                                        new ArrayList<DeviceListItemView>(deviceProductMap.keySet()),
+                                        new MyDeviceListDialog.MyDeviceListDialogListener() {
+                                            @Override
+                                            public void clickSend(List<DeviceItemViewBean> choiceDeviceItemBean) {
+                                                dialog.close();
+                                            }
+                                        }
+                                );
+                            }
+
+                            @Override
+                            public void cancelClick(ProductSettingViewBean dataBean) {
+
+                            }
+
+                            @Override
+                            public void errClick(ProductSettingViewBean dataBean) {
+
+                            }
+                        });
+                    }
+                });
+            }
+        });
         setBtIco(searchDeviceBt, "icomoon.svg.search2");
 
         deviceListView.getStyleClass().add("device-list");

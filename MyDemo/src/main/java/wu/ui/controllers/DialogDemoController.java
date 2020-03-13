@@ -13,7 +13,6 @@ import javafx.scene.layout.StackPane;
 import wu.ui.weights.MyDeviceListDialog;
 import wu.ui.weights.MyInputUrlDialog;
 import wu.ui.weights.MyProductSettingUrlDialog;
-import wu.ui.weights.MyProductSettingView;
 import wu.ui.weights.beans.DeviceItemViewBean;
 import wu.ui.weights.beans.ProductSettingViewBean;
 
@@ -51,9 +50,9 @@ public class DialogDemoController implements Initializable {
                     @Override
                     public void sucClick(String text) {
 
-                        MyProductSettingUrlDialog.showDialogTest(root, new MyProductSettingView.ProductSettingViewListener() {
+                        MyProductSettingUrlDialog.showDialogTest(root, new MyProductSettingUrlDialog.MyProductSettingUrlDialogListener() {
                             @Override
-                            public void sendClick(ProductSettingViewBean dataBean) {
+                            public void sendClick(JFXDialog dialog, ProductSettingViewBean dataBean) {
 
                                 List<DeviceItemViewBean> data = new ArrayList<>();
                                 for (int i = 0; i < 10; i++) {

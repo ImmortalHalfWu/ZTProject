@@ -18,10 +18,21 @@ import wu.ui.adapters.BaseListViewAdapter;
 import wu.ui.weights.beans.DeviceItemViewBean;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 
 public class MyDeviceListDialog {
+
+    public static void showDeviceListDialog(
+            StackPane root,
+            Collection<DeviceListItemView> loginDeviceItemBean,
+            MyDeviceListDialogListener listDialogListener) {
+
+        List<DeviceItemViewBean> temp = new ArrayList<>(loginDeviceItemBean.size());
+        loginDeviceItemBean.forEach(deviceListItemView -> temp.add(deviceListItemView.getDataBean()));
+        showDeviceListDialog(root, temp, listDialogListener);
+    }
 
     public static void showDeviceListDialog(
         StackPane root,
@@ -45,6 +56,13 @@ public class MyDeviceListDialog {
             title.setAlignment(Pos.CENTER);
             vBox.getChildren().add(title);
 
+            Label line = new Label();
+            line.setStyle(" -fx-pref-height: 1; -fx-min-height: 1; -fx-max-height: 1;" +
+                    "-fx-background-color: #dcdcdc;" +
+                    "-fx-pref-width: 250;" +
+                    "");
+            vBox.getChildren().add(line);
+
             ListView<Node> listView = new ListView<>();
             ObservableList<Node> itemViews = FXCollections.observableArrayList();
 
@@ -62,6 +80,15 @@ public class MyDeviceListDialog {
             errLabel.setStyle("-fx-text-fill: #fc4426; -fx-font-size: 13; visibility: false;" +
                 "-fx-pref-width: 245; -fx-alignment: CENTER; -fx-padding: 5");
             vBox.getChildren().add(errLabel);
+
+
+
+            Label line2 = new Label();
+            line2.setStyle(" -fx-pref-height: 1; -fx-min-height: 1; -fx-max-height: 1;" +
+                    "-fx-background-color: #dcdcdc;" +
+                    "-fx-pref-width: 250;" +
+                    "");
+            vBox.getChildren().add(line2);
 
 
             JFXButton sendBt = new JFXButton("发布");
@@ -82,8 +109,8 @@ public class MyDeviceListDialog {
 
 
             JFXButton cancelBt = new JFXButton("取消");
-            cancelBt.setStyle(" -fx-font-size: 18; -fx-text-fill: WHITE; " +
-                "-fx-background-color: #dcdcdc; -fx-pref-width: 125");
+            cancelBt.setStyle(" -fx-font-size: 18; -fx-text-fill: #808080; " +
+                "-fx-background-color: WHITE; -fx-pref-width: 125");
             cancelBt.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
